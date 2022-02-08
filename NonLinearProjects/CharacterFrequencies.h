@@ -11,15 +11,9 @@ class CharacterFrequencies
 {
 public:
 	// Initialize empty instance with no characters
-	CharacterFrequencies()
-	{
-
-	}
+	CharacterFrequencies();
 	// Initialize instance with character frequencies from line
-	CharacterFrequencies(string line)
-	{
-		//read string, create vector pairs
-	}
+	CharacterFrequencies(string line);
 	// Read line and add character frequencies to already stored frequencies
 	void readString(string line);
 	// Reset all character frequencies to 0
@@ -37,8 +31,6 @@ public:
 private:
 	// List of (character, frequency) pairs
 	vector<pair<char, int>> frequencies;
-	// Helper function to get back list index for character c
-	int getCharacterIndex(char c);
 };
 
 #endif // !CHARACTERFREQUENCIES_H

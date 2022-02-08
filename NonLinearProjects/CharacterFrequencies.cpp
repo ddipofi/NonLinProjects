@@ -4,54 +4,81 @@
 #include<vector>
 #include"CharacterFrequencies.h"
 
+CharacterFrequencies tempCharFreqs;
+
 int main()
 {
-	std::string fileName = "input.txt";
-	std::string fileString;
-	std::ifstream fileTxt;
+	string line = "Twinkle twinkle little star, how I wonder what you are.";
+	CharacterFrequencies charFreqs(line);
 
-	fileTxt.open(fileName);
-
-	if (!fileTxt.is_open())
-	{
-		std::cout << "The input file " << fileName << " could not be opened.";
-		return EXIT_FAILURE;
-	}
-
-	while (!fileTxt.eof())
-	{
-		getline(fileTxt, fileString);
-	}
-
-	fileTxt.close();
-
-	int count = 0;
-	char userChar;
-	std::vector<int> charIndices;
-
-	std::cout << "Enter the character to search for: ";
-	std::cin >> userChar;
-
-	for (int i = 0; i < fileString.length(); i++)
-	{
-		if (fileString[i] == userChar)
-		{
-			count++;
-			charIndices.push_back(i);
-		}
-	}
-
-	std::cout << "The number of occurences of the character " << userChar << " is " << count << std::endl;
-
-	if (count != 0)
-	{
-		std::cout << "The indices of the character positions are ";
-
-		for (int i : charIndices)
-		{
-			std::cout << i << " ";
-		}
-	}
+	cout << line << endl;
+	charFreqs.printFrequencies();
+	charFreqs.readString(line);
+	charFreqs.printFrequencies();
 
 	return 0;
 }
+
+CharacterFrequencies::CharacterFrequencies()
+{
+
+}
+
+CharacterFrequencies::CharacterFrequencies(string line)
+{
+	readString(line);
+}
+
+void CharacterFrequencies::readString(string line)
+{
+	for (int i = 0; i < line.length(); i++)
+	{
+		bool added = false;
+
+		for (int j = 0; j < tempCharFreqs.frequencies.size(); j++)
+		{
+			if (tempCharFreqs.frequencies.at(j).first == line[i])
+			{
+				tempCharFreqs.frequencies.at(j).second++;
+				added = true;
+				break;
+			}
+		}
+
+		if (!added)
+		{
+			tempCharFreqs.frequencies.push_back(make_pair(line[i], 1));
+		}
+	}
+}
+
+void CharacterFrequencies::reset()
+{
+	for (int i = 0; i < tempCharFreqs.frequencies.size(); i++)
+	{
+		tempCharFreqs.frequencies.at(i).second = 0;
+	}
+}
+
+int CharacterFrequencies::getFrequency(char c)
+{
+	for (int i = 0; i < tempCharFreqs.frequencies.size(); i++)
+	{
+		if (tempCharFreqs.frequencies.at(i).first == c)
+		{
+			return tempCharFreqs.frequencies.at(i).second;
+		}
+	}
+}
+
+void CharacterFrequencies::printFrequencies()
+{
+	for (int i = 0; i < tempCharFreqs.frequencies.size(); i++)
+	{
+		if (tempCharFreqs.frequencies.at(i).second != 0)
+		{
+			cout << tempCharFreqs.frequencies.at(i).first << ": " << tempCharFreqs.frequencies.at(i).second << endl;
+		}
+	}
+}
+

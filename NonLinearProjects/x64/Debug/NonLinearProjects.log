@@ -1,0 +1,3 @@
+﻿  CharacterFrequencies.cpp
+C:\Users\Dominic\Classes\NonLinear\NonLinProjects\NonLinearProjects\CharacterFrequencies.cpp(72): warning C4715: 'CharacterFrequencies::getFrequency': not all control paths return a value
+  NonLinearProjects.vcxproj -> C:\Users\Dominic\Classes\NonLinear\NonLinProjects\NonLinearProjects\x64\Debug\NonLinearProjects.exe
