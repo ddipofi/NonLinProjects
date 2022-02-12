@@ -6,18 +6,18 @@
 
 CharacterFrequencies tempCharFreqs;
 
-int main()
-{
-	string line = "Twinkle twinkle little star, how I wonder what you are.";
-	CharacterFrequencies charFreqs(line);
-
-	cout << line << endl;
-	charFreqs.printFrequencies();
-	charFreqs.readString(line);
-	charFreqs.printFrequencies();
-
-	return 0;
-}
+//int main()
+//{
+//	string line = "Twinkle twinkle little star, how I wonder what you are.";
+//	CharacterFrequencies charFreqs(line);
+//
+//	cout << line << endl;
+//	charFreqs.printFrequencies();
+//	charFreqs.readString(line);
+//	charFreqs.printFrequencies();
+//
+//	return 0;
+//}
 
 CharacterFrequencies::CharacterFrequencies()
 {

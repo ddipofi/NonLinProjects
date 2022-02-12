@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CharacterFrequencies.cpp" />
+    <ClCompile Include="sortComparison.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CharacterFrequencies.h" />

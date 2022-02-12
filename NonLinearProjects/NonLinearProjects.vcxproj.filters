@@ -16,10 +16,16 @@
     <Filter Include="Source Files\Hw2">
       <UniqueIdentifier>{658895ab-1e42-4ee8-a066-58c08f6e9f73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Hw3">
+      <UniqueIdentifier>{f63a53fd-d1fd-4557-bf25-a2bd058b6efa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CharacterFrequencies.cpp">
       <Filter>Source Files\Hw2</Filter>
+    </ClCompile>
+    <ClCompile Include="sortComparison.cpp">
+      <Filter>Source Files\Hw3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
