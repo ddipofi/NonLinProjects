@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <vector>
+#include <cmath>
 
 int main()
 {
@@ -17,7 +18,7 @@ int main()
 	//your zyBook on passing by reference. You may assume that all entries of the vector are non-negative
 	//integers!
 
-	std::vector<int> numbers = { 10, 2, 78, 4, 45, 32, 7, 11 };
+	std::vector<int> numbers = { 10, 2, 78, -4, 45, -32, 7, 11, 29, 94 };
 
 	std::cout << "Unsorted: ";
 	for (int i : numbers)
@@ -37,6 +38,8 @@ int main()
 	{
 		std::cout << i << ' ';
 	}
+
+	return 0;
 }
 
 void insertionSort(std::vector<int>& numbers)
@@ -86,6 +89,106 @@ void bucketSort(std::vector<int>& numbers, int numBuckets)
 void radixSort(std::vector<int>& numbers)
 {
 	//Sorts the list by base - 10 radix sort
+	int radixGetMaxLength(std::vector<int>&numbers);
+	std::vector<std::vector<int>> buckets(10);
+	int copyBackIndex = 0;
+	int maxDigits = radixGetMaxLength(numbers);
+	int pow10 = 1;
 
+	for (int digitIndex = 0; digitIndex < maxDigits; digitIndex++)
+	{
+		for (int i = 0; i < numbers.size(); i++)
+		{
+			buckets[i].clear();
+		}
 
+		for (int i = 0; i < numbers.size(); i++)
+		{
+			int num = numbers[i];
+			int bucketIndex = (abs(num) / pow10) % 10;
+			buckets[bucketIndex].push_back(num);
+		}
+
+		copyBackIndex = 0;
+
+		for (int i = 0; i < 10; i++)
+		{
+			std::vector<int> bucket = buckets[i];
+
+			for (int j = 0; j < bucket.size(); j ++)
+			{
+				numbers[copyBackIndex] = bucket[j];
+				copyBackIndex++;
+			}
+
+			bucket.clear();
+		}
+
+		pow10 *= 10;
+	}
+
+	std::vector<int> negatives;
+	std::vector<int> nonNegatives;
+
+	for (int num : numbers)
+	{
+		if (num < 0)
+		{
+			negatives.push_back(num);
+		}
+		else
+		{
+			nonNegatives.push_back(num);
+		}
+	}
+
+	copyBackIndex = 0;
+
+	for (int i = negatives.size() - 1; i >= 0; i--)
+	{
+		numbers[copyBackIndex] = negatives[i];
+		copyBackIndex++;
+	}
+
+	for (int i = 0; i < nonNegatives.size(); i++)
+	{
+		numbers[copyBackIndex] = nonNegatives[i];
+		copyBackIndex++;
+	}
+}
+
+int radixGetMaxLength(std::vector<int>& numbers)
+{
+	int radixGetLength(int value);
+
+	int maxDigits = 0;
+	for (int i = 0; i < numbers.size(); i++)
+	{
+		int digitCount = radixGetLength(numbers[i]);
+
+		if (digitCount > maxDigits)
+		{
+			maxDigits = digitCount;
+		}
+	}
+
+	return maxDigits;
+}
+
+int radixGetLength(int value)
+{
+	if (value == 0)
+	{
+		return 1;
+	}
+
+	int digits = 0;
+
+	while (value != 0)
+	{
+		digits++;
+		value /= 10;
+	}
+
+	return digits;
 }
