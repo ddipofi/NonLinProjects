@@ -1,4 +1,4 @@
 ﻿  sortComparison.cpp
-C:\Users\Dominic\Classes\NonLinear\NonLinProjects\NonLinearProjects\sortComparison.cpp(76,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Dominic\Classes\NonLinear\NonLinProjects\NonLinearProjects\sortComparison.cpp(147,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Dominic\Classes\NonLinear\NonLinProjects\NonLinearProjects\sortComparison.cpp(96,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Dominic\Classes\NonLinear\NonLinProjects\NonLinearProjects\sortComparison.cpp(166,2): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   NonLinearProjects.vcxproj -> C:\Users\Dominic\Classes\NonLinear\NonLinProjects\NonLinearProjects\x64\Debug\NonLinearProjects.exe

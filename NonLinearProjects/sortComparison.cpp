@@ -1,42 +1,59 @@
 ﻿#include <iostream>
 #include <vector>
 #include <cmath>
+#include <chrono>
+
+void insertionSort(std::vector<int>& numbers);
+void bucketSort(std::vector<int>& numbers, int numBuckets);
+void radixSort(std::vector<int>& numbers);
+std::vector<int> generateRandomVector(int listSize);
 
 int main()
 {
-	//For each 𝑁 ∈ {10, 100, 1000, 10000}, perform the following 10 times: generate a random vector of
-	//length 𝑁 where each entry of the vector is a random number in {0, 1, 2, … , 999} and record the wall
-	//clock time required to sort the random vector using each of the sorts in parts (a)-(c). Use 10 buckets for
-	//bucket sort.
-	//For each sorting algorithm, compute the average wall clock time in milliseconds for each 𝑁. Which
-	//algorithm is faster for small 𝑁? What about for large 𝑁? How do the wall clock times and growth rates
-	//compare to the big O average time complexities? Submit your average wall clock times and answers
-	//to the above questions in a separate file from your code (e.g. in a Word document)!
-	//
-	//The & denotes a parameter that is passed to a function by reference. This is required to sort a vector in place,
-	//i.e. without creating a copy of the vector. You may wish to consult optional sections 16.28 and 16.29 of
-	//your zyBook on passing by reference. You may assume that all entries of the vector are non-negative
-	//integers!
+	//used microseconds and converted to milliseconds in word doc, because milliseconds were 0
 
-	std::vector<int> numbers = { 10, 2, 78, -4, 45, -32, 7, 11, 29, 94 };
+	std::vector<int> iList;
+	std::vector<int> bList;
+	std::vector<int> rList;
+	auto start = std::chrono::high_resolution_clock::now();
+	auto stop = start;
+	auto totalTimeI = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+	auto totalTimeB = totalTimeI;
+	auto totalTimeR = totalTimeI;
 
-	std::cout << "Unsorted: ";
-	for (int i : numbers)
+	for (int i = 10; i < 10001; i *= 10)
 	{
-		std::cout << i << ' ';
-	}
+		for (int j = 0; j < 10; j++)
+		{
+			iList = generateRandomVector(i);
+			bList = iList;
+			rList = iList;
 
-	/*void insertionSort(std::vector<int>& numbers);
-	insertionSort(numbers);*/
-	/*void bucketSort(std::vector<int>&numbers, int numBuckets);
-	bucketSort(numbers, 5);*/
-	void radixSort(std::vector<int>&numbers);
-	radixSort(numbers);
+			start = std::chrono::high_resolution_clock::now();
+			insertionSort(iList);
+			stop = std::chrono::high_resolution_clock::now();
+			totalTimeI += std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
-	std::cout << std::endl << "Sorted: ";
-	for (int i : numbers)
-	{
-		std::cout << i << ' ';
+			start = std::chrono::high_resolution_clock::now();
+			bucketSort(bList, 10);
+			stop = std::chrono::high_resolution_clock::now();
+			totalTimeB += std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+			start = std::chrono::high_resolution_clock::now();
+			radixSort(rList);
+			stop = std::chrono::high_resolution_clock::now();
+			totalTimeR += std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+		}
+
+		std::cout << "Avg wall clock time for insertionSort() when N = " << i << ": " << totalTimeI.count() / 10 << std::endl;
+		std::cout << "Avg wall clock time for bucketSort() when N = " << i << ": " << totalTimeB.count() / 10 << std::endl;
+		std::cout << "Avg wall clock time for radixSort() when N = " << i << ": " << totalTimeR.count() / 10 << std::endl;
+
+		start = std::chrono::high_resolution_clock::now();
+		stop = start;
+		totalTimeI = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+		totalTimeB = totalTimeI;
+		totalTimeR = totalTimeI;
 	}
 
 	return 0;
@@ -88,7 +105,6 @@ void bucketSort(std::vector<int>& numbers, int numBuckets)
 
 void radixSort(std::vector<int>& numbers)
 {
-	//Sorts the list by base - 10 radix sort
 	int radixGetMaxLength(std::vector<int>&numbers);
 	std::vector<std::vector<int>> buckets(10);
 	int copyBackIndex = 0;
@@ -97,7 +113,7 @@ void radixSort(std::vector<int>& numbers)
 
 	for (int digitIndex = 0; digitIndex < maxDigits; digitIndex++)
 	{
-		for (int i = 0; i < numbers.size(); i++)
+		for (int i = 0; i < 10; i++)
 		{
 			buckets[i].clear();
 		}
@@ -191,4 +207,13 @@ int radixGetLength(int value)
 	}
 
 	return digits;
+}
+
+std::vector<int> generateRandomVector(int listSize) {
+	std::vector<int> randomList(listSize);
+
+	for (int i = 0; i < listSize; i++)
+		randomList.at(i) = rand() % 1000;
+
+	return randomList;
 }
