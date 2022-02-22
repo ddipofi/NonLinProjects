@@ -139,11 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CharacterFrequencies.cpp" />
-    <ClCompile Include="sortComparison.cpp" />
+    <ClCompile Include="BoundedArray.cpp" />
+    <ClCompile Include="MainTesting.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CharacterFrequencies.h" />
+    <ClInclude Include="BoundedArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

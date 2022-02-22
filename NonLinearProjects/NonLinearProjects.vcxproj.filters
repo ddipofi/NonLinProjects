@@ -13,24 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Hw2">
-      <UniqueIdentifier>{658895ab-1e42-4ee8-a066-58c08f6e9f73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Hw3">
-      <UniqueIdentifier>{f63a53fd-d1fd-4557-bf25-a2bd058b6efa}</UniqueIdentifier>
+    <Filter Include="Source Files\Hw4">
+      <UniqueIdentifier>{6789c7b9-269b-45ac-92c2-43e678e68310}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CharacterFrequencies.cpp">
-      <Filter>Source Files\Hw2</Filter>
+    <ClCompile Include="BoundedArray.cpp">
+      <Filter>Source Files\Hw4</Filter>
     </ClCompile>
-    <ClCompile Include="sortComparison.cpp">
-      <Filter>Source Files\Hw3</Filter>
+    <ClCompile Include="MainTesting.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CharacterFrequencies.h">
-      <Filter>Source Files\Hw2</Filter>
+    <ClInclude Include="BoundedArray.h">
+      <Filter>Source Files\Hw4</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
