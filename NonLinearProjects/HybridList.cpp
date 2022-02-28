@@ -185,7 +185,61 @@ void HybridList::insert(int index, double value)
 
 void HybridList::erase(int index)
 {
+	if (index < 0 || index >= numElements)
+	{
+		throw out_of_range("Invalid index " + to_string(index));
+	}
+	else
+	{
+		HybridListNode* curNode = head;
+		int eNum = curNode->size();
 
+		while ((index - 1 > eNum))
+		{
+			curNode = curNode->next;
+			eNum += curNode->size();
+		}
+
+
+
+		//change to remove
+		int eraseIndex = curNode->size() - 1;
+
+		for (eNum; index < eNum - 1; eNum--)
+		{
+			eraseIndex--;
+		}
+
+		curNode->erase(eraseIndex);
+		curNode->resize(curNode->size() - 1);
+
+		//if its empty after removing, delete node
+		if (curNode->size() == 0)
+		{
+			if (numBlocks == 1)
+			{
+				HybridListNode* curNode = head;
+				delete curNode;
+				head = tail = nullptr;
+			}
+			else
+			{
+				HybridListNode* curNode = head, * prevNode = nullptr;
+
+				while (curNode->next != nullptr) {
+					prevNode = curNode;
+					curNode = curNode->next;
+				}
+
+				tail = prevNode;
+				delete curNode;
+			}
+
+			numBlocks--;
+		}
+
+		numElements--;
+	}
 }
 
 void HybridList::clear() {

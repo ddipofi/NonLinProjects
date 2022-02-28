@@ -4,15 +4,13 @@
 int main()
 {
 	HybridList list = HybridList();
-	list.push_back(5);
-	list.push_back(6);
-	list.push_back(6);
-	list.push_back(6);
-	list.push_back(6);
-	list.push_back(6);
-	list.push_back(6);
-	list.push_back(6);
-	list.insert(3, 4);
+	
+	for (int i = 0; i < 9; i++)
+	{
+		list.push_back(i);
+	}
+
+	//list.erase(3);
 
 	std::cout << list.at(3);
 
