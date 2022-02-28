@@ -170,17 +170,15 @@ void HybridList::insert(int index, double value)
 			}
 		}
 
-		int size = curNode->size();
-		int i;
+		int insertIndex = curNode->size() - 1;
 
-		for (i = 0; index < eNum; i--)
+		for (eNum; index < eNum - 1; eNum--)
 		{
-			curNode[size + i] = curNode->at(size + i - 1);
-			eNum--;
+			insertIndex--;
 		}
 
-		curNode[size + i] = value;
-
+		curNode->insert(insertIndex, value);
+		curNode->resize(curNode->size() + 1);
 		numElements++;
 	}
 }

@@ -14,7 +14,7 @@ int main()
 	list.push_back(6);
 	list.insert(3, 4);
 
-	std::cout << "hi";
+	std::cout << list.at(3);
 
 	return 0;
 }
