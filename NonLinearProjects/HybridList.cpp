@@ -134,7 +134,55 @@ void HybridList::pop_back()
 
 void HybridList::insert(int index, double value)
 {
+	if (index < 0 || index >= numElements)
+	{
+		throw out_of_range("Invalid index " + to_string(index));
+	}
+	else
+	{
+		HybridListNode* curNode = head;
+		int eNum = curNode->size();
 
+		while ((index - 1 > eNum))
+		{
+			curNode = curNode->next;
+			eNum += curNode->size();
+		}
+
+		if (curNode->size() == blockSize)
+		{
+			HybridListNode* newNode = new HybridListNode(blockSize);
+			eNum -= curNode->size();
+
+			for (int i = blockSize / 2 + 1; i < blockSize; i++)
+			{
+				newNode->push_back(curNode->at(i));
+			}
+
+			curNode->resize(blockSize / 2 + 1);
+			numBlocks++;
+			eNum += curNode->size();
+
+			if (index - 1 > eNum)
+			{
+				curNode = newNode;
+				eNum += curNode->size();
+			}
+		}
+
+		int size = curNode->size();
+		int i;
+
+		for (i = 0; index < eNum; i--)
+		{
+			curNode[size + i] = curNode->at(size + i - 1);
+			eNum--;
+		}
+
+		curNode[size + i] = value;
+
+		numElements++;
+	}
 }
 
 void HybridList::erase(int index)

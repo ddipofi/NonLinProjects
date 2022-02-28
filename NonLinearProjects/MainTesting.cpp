@@ -12,20 +12,7 @@ int main()
 	list.push_back(6);
 	list.push_back(6);
 	list.push_back(6);
-	list.push_back(6);
-	list.push_back(6);
-	list.push_back(6);
-	list.pop_back();
-	list.pop_back();
-	list.pop_back();
-	list.pop_back();
-	list.pop_back();
-	list.pop_back();
-	list.pop_back();
-	list.pop_back();
-	list.pop_back();
-	list.pop_back();
-	list.pop_back();
+	list.insert(3, 4);
 
 	std::cout << "hi";
 
