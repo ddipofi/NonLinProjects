@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BoundedArray.cpp" />
+    <ClCompile Include="HybridList.cpp" />
     <ClCompile Include="MainTesting.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BoundedArray.h" />
+    <ClInclude Include="HybridList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
