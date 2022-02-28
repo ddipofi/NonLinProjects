@@ -211,7 +211,7 @@ void HybridList::erase(int index)
 		}
 
 		curNode->erase(eraseIndex);
-		curNode->resize(curNode->size() - 1);
+		curNode->resize(curNode->size());
 
 		//if its empty after removing, delete node
 		if (curNode->size() == 0)
