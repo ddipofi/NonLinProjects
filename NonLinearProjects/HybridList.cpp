@@ -178,7 +178,7 @@ void HybridList::insert(int index, double value)
 		}
 
 		curNode->insert(insertIndex, value);
-		curNode->resize(curNode->size() + 1);
+		curNode->resize(curNode->size());
 		numElements++;
 	}
 }
