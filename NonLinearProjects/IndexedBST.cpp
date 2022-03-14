@@ -191,14 +191,17 @@ bool IndexedBST::remove(double key)
 		}
 	}
 	
-	while (temp->parent != null)
+	if (removable)
 	{
-		if (temp->parent->left == temp)
+		while (temp->parent != null)
 		{
-			temp->parent->leftSize--;
-		}
+			if (temp->parent->left == temp)
+			{
+				temp->parent->leftSize--;
+			}
 
-		temp = temp->parent;
+			temp = temp->parent;
+		}
 	}
 
 	return removable;
