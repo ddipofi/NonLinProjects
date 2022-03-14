@@ -175,9 +175,12 @@ bool IndexedBST::remove(double key)
 				double successorData = suc->key;
 				remove(successorData);
 				cur->key = successorData;
+
+				return true;
 			}
 			
 			removable = true;
+			break;
 		}
 		else if (cur->key < key)
 		{
@@ -191,9 +194,9 @@ bool IndexedBST::remove(double key)
 		}
 	}
 	
-	if (removable)
+	if (removable == true)
 	{
-		while (temp->parent != null)
+		while (temp->parent != nullptr)
 		{
 			if (temp->parent->left == temp)
 			{
