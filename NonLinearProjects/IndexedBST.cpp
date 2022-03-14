@@ -109,11 +109,15 @@ bool IndexedBST::remove(double key)
 {
 	Node* par = nullptr;
 	Node* cur = root;
+	Node* temp = nullptr;
+	bool removable = false;
 
 	while (cur != nullptr)
 	{
 		if (cur->key == key)
 		{
+			temp = cur;
+			
 			if (cur->left == nullptr && cur->right == nullptr)
 			{
 				if (par == nullptr)
@@ -172,8 +176,8 @@ bool IndexedBST::remove(double key)
 				remove(successorData);
 				cur->key = successorData;
 			}
-
-			return true;
+			
+			removable = true;
 		}
 		else if (cur->key < key)
 		{
@@ -183,10 +187,22 @@ bool IndexedBST::remove(double key)
 		else
 		{
 			par = cur;
-			par->leftSize--;
 			cur = cur->left;
 		}
 	}
+	
+	if (removable)
+	{
+		while (temp->parent != null)
+		{
+			if (temp->parent->left == temp)
+			{
+				temp->parent->leftSize--;
+			}
 
-	return false;
+			temp = temp->parent;
+		}
+	}
+
+	return removable;
 }
