@@ -15,21 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainTesting.cpp">
+    <ClCompile Include="IndexedBST.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BoundedArray.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HybridList.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BoundedArray.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HybridList.h">
+    <ClInclude Include="IndexedBST.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
