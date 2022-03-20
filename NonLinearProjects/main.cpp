@@ -1,32 +1,37 @@
 #include "AVLTree.h"
 #include <iostream>
+#include <random>
 
 using namespace std;
 
 int main()
 {
-	// Single rotate left
-	AVLTree b;
-	Node* bRoot = new Node(2);
-	b.insert(bRoot);
-	b.insert(new Node(1));
-	b.insert(new Node(3));
-	b.insert(new Node(4));
-	b.insert(new Node(5));
-	cout << bRoot->key << endl;
-	cout << bRoot->left->key << " " << bRoot->right->key << endl;
-	cout << bRoot->right->left->key << " " << bRoot->right->right->key << endl;
-	// Rotate left then right
-	AVLTree c;
-	Node* cRoot = new Node(4);
-	c.insert(cRoot);
-	c.insert(new Node(3));
-	c.insert(new Node(5));
-	c.insert(new Node(1));
-	c.insert(new Node(2));
-	cout << cRoot->key << endl;
-	cout << cRoot->left->key << " " << cRoot->right->key << endl;
-	cout << cRoot->left->left->key << " " << cRoot->left->right->key << endl;
+	double randomN = 0.0;
+
+	for (int i = 100; i < 100001; i *= 10)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			randomN = (double)rand() / RAND_MAX;
+			AVLTree a;
+			Node* aRoot = new Node(randomN);
+			a.insertWithoutRebalance(aRoot);
+			AVLTree b;
+			Node* bRoot = new Node(randomN);
+			b.insert(bRoot);
+
+			for (int k = 1; k < i; k++)
+			{
+				randomN = (double)rand() / RAND_MAX;
+				a.insertWithoutRebalance(new Node(randomN));
+				b.insert(new Node(randomN));
+			}
+
+			cout << aRoot->height << "  :  " << bRoot->height << endl;
+		}
+
+		cout << "\n\nNext N" << endl;
+	}
 
 	return 0;
 }

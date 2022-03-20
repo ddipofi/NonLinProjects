@@ -2,7 +2,8 @@
 #define AVLTREE_H
 
 // A node in the AVL tree that stores a double
-class Node {
+class Node
+{
 public:
     double key;
     int height = 0;
@@ -10,7 +11,7 @@ public:
     Node* right = nullptr;
     Node* parent = nullptr;
 
-    enum child
+    enum class child
     {
         LEFT,
         RIGHT
