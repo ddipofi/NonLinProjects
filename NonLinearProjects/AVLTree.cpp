@@ -237,6 +237,14 @@ void AVLTree::insertWithoutRebalance(Node* node)
 			}
 		}
 	}
+	
+	node = node->parent;
+	//maybe update height here too
+	while (node != nullptr)
+	{
+		node->updateHeight();
+		node = node->parent;
+	}
 }
 
 void AVLTree::deleteTree(Node* node)
