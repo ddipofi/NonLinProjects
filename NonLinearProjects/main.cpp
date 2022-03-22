@@ -26,12 +26,44 @@ int main()
 				a.insertWithoutRebalance(new Node(randomN));
 				b.insert(new Node(randomN));
 			}
+			
+			while (aRoot->parent != nullptr)
+			{
+				aRoot = aRoot->parent;
+			}
+			
+			while (bRoot->parent != nullptr)
+			{
+				bRoot = bRoot->parent;
+			}
 
-			cout << aRoot->height << "  :  " << bRoot->height << endl;
+			cout << maxHeight(aRoot) << "  :  " << bRoot->height << endl;
 		}
 
 		cout << "\n\nNext N" << endl;
 	}
 
 	return 0;
+}
+
+int maxHeight(Node* node)
+{
+	if (node == nullptr)
+		{
+			return -1;
+		}
+	else
+	{
+		int lDepth = maxDepth(node->left);
+		int rDepth = maxDepth(node->right);
+		
+		if (lDepth > rDepth)
+		{
+			return(lDepth + 1);
+		}
+		else
+		{
+			return(rDepth + 1);
+		}
+	}
 }
