@@ -1,3 +1,4 @@
+#include "RedBlackTree.h"
 #include "AVLTree.h"
 #include <iostream>
 #include <random>
@@ -15,16 +16,16 @@ int main()
 			randomN = (double)rand() / RAND_MAX;
 			AVLTree a;
 			Node* aRoot = new Node(randomN);
-			a.insertWithoutRebalance(aRoot);
-			AVLTree b;
-			Node* bRoot = new Node(randomN);
+			a.insert(aRoot);
+			RedBlackTree b;
+			RBTNode* bRoot = new RBTNode(randomN);
 			b.insert(bRoot);
 
 			for (int k = 1; k < i; k++)
 			{
 				randomN = (double)rand() / RAND_MAX;
-				a.insertWithoutRebalance(new Node(randomN));
-				b.insert(new Node(randomN));
+				a.insert(new Node(randomN));
+				b.insert(new RBTNode(randomN));
 			}
 			
 			while (aRoot->parent != nullptr)
