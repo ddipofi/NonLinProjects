@@ -2,12 +2,17 @@
 #include "AVLTree.h"
 #include <iostream>
 #include <random>
+#include <chrono>
 
 using namespace std;
 
 int main()
 {
-	/*double randomN = 0.0;
+	double randomN = 0.0;
+	auto start = std::chrono::high_resolution_clock::now();
+	auto stop = start;
+	auto totalTimeAVL = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+	auto totalTimeRBT = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
 	for (int i = 100; i < 100001; i *= 10)
 	{
@@ -20,13 +25,28 @@ int main()
 			RedBlackTree b;
 			RBTNode* bRoot = new RBTNode(randomN);
 			b.insert(bRoot);
+			std::vector<double> randomList(i - 1);
 
-			for (int k = 1; k < i; k++)
+			for (int l = 0; l < i - 1; l++)
 			{
-				randomN = (double)rand() / RAND_MAX;
-				a.insert(new Node(randomN));
-				b.insert(new RBTNode(randomN));
+				randomList.at(l) = (double)rand() / RAND_MAX;
 			}
+			
+			start = std::chrono::high_resolution_clock::now();
+			for (int m = 0; m < i - 1; m++)
+			{
+				a.insert(new Node(randomList.at(m)));
+			}
+			stop = std::chrono::high_resolution_clock::now();
+			totalTimeAVL = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+			start = std::chrono::high_resolution_clock::now();
+			for (int k = 0; k < i - 1; k++)
+			{
+				b.insert(new RBTNode(randomList.at(k)));
+			}
+			stop = std::chrono::high_resolution_clock::now();
+			totalTimeRBT = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 			
 			while (aRoot->parent != nullptr)
 			{
@@ -38,11 +58,12 @@ int main()
 				bRoot = bRoot->parent;
 			}
 
-			cout << aRoot->height << "  :  " << bRoot->height << endl;
+			cout << "AVL:   " << aRoot->height << "  :  " << totalTimeAVL.count() / 10 << endl;
+			cout << "RBT:   " << bRoot->height << "  :  " << totalTimeRBT.count() / 10 << "\n" << endl;
 		}
 
 		cout << "\n\nNext N" << endl;
-	}*/
+	}
 
 	//RedBlackTree rbt;
 	//RBTNode* rbtRoot = new RBTNode(46);
