@@ -162,6 +162,11 @@ void RedBlackTree::insert(RBTNode* node) {
 
     node->red = true;
     insertionBalance(node);
+    while (node->parent != nullptr)
+    {
+        node->updateHeight();
+        node = node->parent;
+    }
 }
 
 void RedBlackTree::insertionBalance(RBTNode* node) {
@@ -240,7 +245,6 @@ RBTNode* RedBlackTree::rotateRight(RBTNode* node) {
 
     node->left->setChild(RBTNode::Child::RIGHT, node);
 
-    // Step 3 - reattach leftRightChild as the right child of node.
     node->setChild(RBTNode::Child::LEFT, leftRightChild);
 
     return node->parent;
