@@ -19,13 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AVLTree.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="RedBlackTree.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AVLTree.h" />
-    <ClInclude Include="RedBlackTree.h" />
+    <ClCompile Include="facebookGraph.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
