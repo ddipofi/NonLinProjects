@@ -1,129 +1,159 @@
+#include <vector>
+#include <unordered_map>
 #include <string>
+#include <fstream>
+#include <iostream>
 
-class Vertex
+using namespace std;
+
+unordered_map<int, vector<int>> uMap;
+void addEdge(int vertex1, int vertex2);
+void addNewVertex(int vertex);
+void printList(unordered_map<int, vector<int>> const& m);
+
+int main()
 {
-public:
-    std::string label;
+    const string facebookText = "facebook-links.txt";
 
-    Vertex(std::string vertexLabel)
+    ifstream inFS;
+    inFS.open(facebookText);
+    
+    if (!inFS.is_open())
     {
-        label = vertexLabel;
+    	cout << "Could not open file " << facebookText << endl;
+    	return EXIT_FAILURE;
+    }
+    
+    int a = 0;
+    int b = 0;
+    string extra = "";
+    
+    while (!inFS.eof())
+    {
+    	inFS >> a >> b >> extra;
+    	if (!inFS.fail())
+    	{
+    		addNewVertex(a);
+            addNewVertex(b);
+            addEdge(a, b);
+    	}
     }
 
-    Vertex& addVertex(std::string newVertexLabel)
-    {
-        Vertex* newVertex = Vertex*(newVertexLabel);
+    inFS.close();
 
-        // Every vertex must exist as a key in both maps
-        fromEdges.put(newVertex, new ArrayList<Edge>());
-        toEdges.put(newVertex, new ArrayList<Edge>());
+    printList(uMap);
 
-        return newVertex;
-    }
+    return 0;
 }
 
-class Edge
+void printList(unordered_map<int, vector<int>> const& m)
 {
-public:
-    Vertex* fromVertex;
-    Vertex* toVertex;
+    for (auto const& pair : m) {
+        int i = 0;
+        cout << "{" << pair.first << ": ";
+        for (i = 0; i < pair.second.size() - 1; i++)
+        {
+            cout << pair.second.at(i) << ", ";
+        }
+        cout << pair.second.at(i) << "}\n";
+    }
+}
 
-    Edge(Vertex* from, Vertex* to)
+void addEdge(int vertex1, int vertex2)
+{
+    uMap[vertex1].push_back(vertex2);
+    uMap[vertex2].push_back(vertex1);
+}
+
+void addNewVertex(int vertex) {
+
+    if (uMap.find(vertex) == uMap.end())
     {
-        fromVertex = from;
-        toVertex = to;
-    }
-
-    public Edge addDirectedEdge(Vertex fromVertex, Vertex toVertex, double weight) {
-        // Don't add the same edge twice
-        if (hasEdge(fromVertex, toVertex)) {
-            return null;
-        }
-
-        // Create the Edge object
-        Edge newEdge = new Edge(fromVertex, toVertex, weight);
-
-        // Add the edge to the appropriate list in both maps
-        fromEdges.get(fromVertex).add(newEdge);
-        toEdges.get(toVertex).add(newEdge);
-
-        return newEdge;
+        vector<int> vectorr;
+        uMap.insert({vertex, vectorr});
     }
 }
 
-class Graph {
-    private HashMap<Vertex, ArrayList<Edge>> fromEdges;
-
-    private HashMap<Vertex, ArrayList<Edge>> toEdges;
-
-    public Graph() {
-        fromEdges = new HashMap<Vertex, ArrayList<Edge>>();
-        toEdges = new HashMap<Vertex, ArrayList<Edge>>();
-    }
-
-    // Returns a collection of all edges in the graph
-    public Collection<Edge> getEdges() {
-        HashSet<Edge> edges = new HashSet<Edge>();
-        for (ArrayList<Edge> edgeList : fromEdges.values()) {
-            edges.addAll(edgeList);
-        }
-        return edges;
-    }
-
-    // Returns the collection of edges with the specified fromVertex
-    public Collection<Edge> getEdgesFrom(Vertex fromVertex) {
-        return fromEdges.get(fromVertex);
-    }
-
-    // Returns the collection of edges with the specified toVertex
-    public Collection<Edge> getEdgesTo(Vertex toVertex) {
-        return toEdges.get(toVertex);
-    }
-
-    // Returns a vertex with a matching label, or null if no such vertex exists
-    public Vertex getVertex(String vertexLabel) {
-        // Search the collection of vertices for a vertex with a matching label
-        for (Vertex vertex : getVertices()) {
-            if (vertex.label.equals(vertexLabel)) {
-                return vertex;
-            }
-        }
-        return null;
-    }
-
-    // Returns the collection of all of this graph's vertices
-    public Collection<Vertex> getVertices() {
-        return fromEdges.keySet();
-    }
-
-    ...
-}
 
 
 
 
 
-public Edge[] addUndirectedEdge(Vertex vertexA, Vertex vertexB, double weight) {
-    Edge edge1 = addDirectedEdge(vertexA, vertexB, weight);
-    Edge edge2 = addDirectedEdge(vertexB, vertexA, weight);
-    Edge[] result = { edge1, edge2 };
-    return result;
-}
 
-// Returns true if this graph has an edge from fromVertex to toVertex
-public boolean hasEdge(Vertex fromVertex, Vertex toVertex) {
-    if (!fromEdges.containsKey(fromVertex)) {
-        // fromVertex is not in this graph
-        return false;
-    }
-
-    // Search the list of edges for an edge that goes to toVertex
-    ArrayList<Edge> edges = fromEdges.get(fromVertex);
-    for (Edge edge : edges) {
-        if (edge.toVertex == toVertex) {
-            return true;
-        }
-    }
-
-    return false;
-}
+//#include <iostream>
+//#include <vector>
+//#include <fstream>
+//#include <string>
+//#include <unordered_map>
+//#include <forward_list>
+//
+//using namespace std;
+//
+//const string facebookText = "facebook-links.txt";
+//
+//class graph
+//{
+//public:
+//	unordered_map<int, forward_list<int>>* outerMap;
+//
+//	graph()
+//	{
+//		//outer = new vector<int>;
+//	}
+//
+//	void addEdge(int x, int y)
+//	{
+//		forward_list<int> fList;
+//
+//		outerMap.emplace(x, fList).first->second = fList;
+//		
+//		
+//
+//		outerMap[x] = fList;
+//		outer[y].push_back(x);
+//	}
+//
+//	void printAdjList()
+//	{
+//		for (int i = 1; i < 100; i++)
+//		{
+//			cout << i << ": [";
+//			for (int adj : outer[i])
+//			{
+//				cout << adj << ",";
+//			}
+//			cout << "]" << endl;
+//		}
+//	}
+//};
+//
+//int main()
+//{
+//	ifstream inFS;
+//	inFS.open(facebookText);
+//
+//	if (!inFS.is_open())
+//	{
+//		cout << "Could not open file " << facebookText << endl;
+//		return EXIT_FAILURE;
+//	}
+//
+//	graph g;
+//	int a = 0;
+//	int b = 0;
+//	string extra = "";
+//
+//	for (int i = 0; i < 200; i++)
+//	{
+//		inFS >> a >> b >> extra;
+//		if (!inFS.fail())
+//		{
+//			g.addEdge(a, b);
+//		}
+//	}
+//	inFS.close();
+//
+//	g.printAdjList();
+//
+//	return 0;
+//}
