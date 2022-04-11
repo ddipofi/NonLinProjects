@@ -1,2 +1,3 @@
 ﻿  facebookGraph.cpp
+C:\Users\Dominic\Classes\NonLinear\NonLinProjects\NonLinearProjects\facebookGraph.cpp(61,32): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
   NonLinearProjects.vcxproj -> C:\Users\Dominic\Classes\NonLinear\NonLinProjects\NonLinearProjects\x64\Debug\NonLinearProjects.exe
