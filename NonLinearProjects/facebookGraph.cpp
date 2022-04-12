@@ -95,7 +95,6 @@ void addEdge(std::vector<std::unordered_set<int>>& adjList, int u, int v) {
 using namespace std;
 
 unordered_map<int, vector<int>> uMap;
-vector<string> edgeValues;
 void addEdge(int vertex1, int vertex2);
 void addNewVertex(int vertex);
 void printList(unordered_map<int, vector<int>> const& m);
@@ -158,16 +157,14 @@ void printList(unordered_map<int, vector<int>> const& m)
 
 void addEdge(int vertex1, int vertex2)
 {
-    /*if (find(edgeValues.begin(), edgeValues.end(), to_string(vertex1) + ":" + (to_string(vertex2))) == edgeValues.end() && find(edgeValues.begin(), edgeValues.end(), to_string(vertex2) + ":" + (to_string(vertex1))) == edgeValues.end())
+    if (find(uMap[vertex1].begin(), uMap[vertex1].end(), vertex2) == uMap[vertex1].end())
     {
         uMap[vertex1].push_back(vertex2);
+    }
+    if (find(uMap[vertex2].begin(), uMap[vertex2].end(), vertex1) == uMap[vertex2].end())
+    {
         uMap[vertex2].push_back(vertex1);
-        edgeValues.push_back(to_string(vertex1) + ":" + (to_string(vertex2)));
-        edgeValues.push_back(to_string(vertex2) + ":" + (to_string(vertex1)));
-    }*/
-
-    uMap[vertex1].push_back(vertex2);
-    uMap[vertex2].push_back(vertex1);
+    }
 }
 
 void addNewVertex(int vertex)
