@@ -42,7 +42,6 @@ int main()
 
     inFS.close();
 
-    cout << "hello" << endl;
     printList(uMap);
 
     return 0;
