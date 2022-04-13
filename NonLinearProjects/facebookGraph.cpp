@@ -1,6 +1,5 @@
 // facebookGraph.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -48,9 +47,9 @@ int main()
             meanDegree += vertexDeg / (double) numVertices;
         for (int j = 0; j < facebookAdjList.at(i).size(); j++)
         {
-            adjVertexDegree = facebookAdjList.at(j).size();
+            adjVertexDeg = facebookAdjList.at(j).size();
             if (adjVertexDeg >= 0)
-                meanAdjDegree += adjVertexDegree / (double) vertexDeg;
+                meanAdjDegree += adjVertexDeg / (double) vertexDeg;
         }
         //std::cout << "Vertex " << i << " has degree " << vertexDeg << std::endl;
     }
@@ -74,104 +73,3 @@ void addEdge(std::vector<std::unordered_set<int>>& adjList, int u, int v) {
     if (adjList.at(v).count(u) == 0)
         adjList.at(v).insert(u);
 }
-
-
-
-
-
-
-
-
-
-
-
-/*
-#include <vector>
-#include <unordered_map>
-#include <string>
-#include <fstream>
-#include <iostream>
-
-using namespace std;
-
-unordered_map<int, vector<int>> uMap;
-void addEdge(int vertex1, int vertex2);
-void addNewVertex(int vertex);
-void printList(unordered_map<int, vector<int>> const& m);
-
-int main()
-{
-    const string facebookText = "facebook-links.txt";
-
-    ifstream inFS;
-    inFS.open(facebookText);
-    
-    if (!inFS.is_open())
-    {
-    	cout << "Could not open file " << facebookText << endl;
-    	return EXIT_FAILURE;
-    }
-    
-    int a = 0;
-    int b = 0;
-    string extra = "";
-
-    while (!inFS.eof())
-    {
-    	inFS >> a >> b >> extra;
-    	if (!inFS.fail())
-    	{
-    		addNewVertex(a);
-            addNewVertex(b);
-            addEdge(a, b);
-    	}
-    }
-
-    inFS.close();
-
-    printList(uMap);
-
-    return 0;
-}
-
-void printList(unordered_map<int, vector<int>> const& m)
-{
-    int num100plus = 0;
-    int top = 0;
-    int bot = 0;
-
-    for (auto const& pair : m)
-    {
-        bot++;
-        top += pair.second.size();
-
-        if (pair.second.size() >= 100)
-        {
-            num100plus++;
-        }
-    }
-
-    cout << "The average degree over all vertices in the graph is " << (top / bot) << "\nThe number of vertices with degree greater than or equal to 100 is " << num100plus;
-}
-
-void addEdge(int vertex1, int vertex2)
-{
-    if (find(uMap[vertex1].begin(), uMap[vertex1].end(), vertex2) == uMap[vertex1].end())
-    {
-        uMap[vertex1].push_back(vertex2);
-    }
-    if (find(uMap[vertex2].begin(), uMap[vertex2].end(), vertex1) == uMap[vertex2].end())
-    {
-        uMap[vertex2].push_back(vertex1);
-    }
-}
-
-void addNewVertex(int vertex)
-{
-    if (uMap.find(vertex) == uMap.end())
-    {
-        vector<int> vectorr;
-        uMap.insert({vertex, vectorr});
-    }
-}
-*/
