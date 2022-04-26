@@ -19,10 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="facebookGraph.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="facebook-links.txt" />
+    <ClCompile Include="disjointSetForest.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
